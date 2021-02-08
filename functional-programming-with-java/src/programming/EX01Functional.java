@@ -62,11 +62,13 @@ public class EX01Functional {
 	}
 
 	private static void sortDistinctNumbers(List<Integer> numbers) {
-		numbers.stream().distinct().sorted().forEach(System.out::println);
+		numbers.stream().distinct()// Strem<T> Intermediate Operation
+				.sorted().forEach(System.out::println);
 	}
 
 	private static void sortNumbers(List<Integer> numbers) {
-		numbers.stream().sorted().forEach(System.out::println);
+		numbers.stream().sorted()// Strem<T> Intermediate Operation
+				.forEach(System.out::println);
 	}
 
 	private static void displayDistinctNumbers(List<Integer> numbers) {
