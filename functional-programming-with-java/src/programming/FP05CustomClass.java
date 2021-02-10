@@ -59,12 +59,9 @@ class Course {
 public class FP05CustomClass {
 
 	public static void main(String[] args) {
-		List<Course> course = List.of( 	new Course("Java", 100, 34, "Basic"), 
-										new Course("Python", 101, 54, "Basic"),
-										new Course("React", 101, 314, "Basic"), 
-										new Course("Spring", 109, 94, "Basic"),
-										new Course("Hibernate", 144, 14, "Basic")
-									);
+		List<Course> course = List.of(new Course("Java", 100, 34, "Basic"), new Course("Python", 101, 54, "Basic"),
+				new Course("React", 101, 314, "Basic"), new Course("Spring", 109, 94, "Basic"),
+				new Course("Hibernate", 144, 14, "Basic"));
 
 		// All match, none match, any match
 
