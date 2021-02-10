@@ -163,6 +163,30 @@ public class FP05CustomClass {
 		// Find First
 		System.out.println(course.stream().sorted(comparingNoOfStudentIncReviews).findFirst()
 				.orElse(new Course("Docker", 244, 14, "Basic")));
+
+		System.out.println(course.stream().filter(matchRulegreaterthan10).map(courses -> courses.getNoOfStudent())
+				.collect(Collectors.toList()));
+		// [400, 400, 101, 109, 144]
+
+		// Sum
+		System.out.println(
+				course.stream().filter(matchRulegreaterthan10).mapToInt(courses -> courses.getNoOfStudent()).sum());
+		// 1154
+
+		// Average
+		System.out.println(
+				course.stream().filter(matchRulegreaterthan10).mapToInt(courses -> courses.getNoOfStudent()).average());
+		// OptionalDouble[230.8]
+
+		// Count
+		System.out.println(
+				course.stream().filter(matchRulegreaterthan10).mapToInt(courses -> courses.getNoOfStudent()).count());
+		// 5
+
+		// MAx
+		System.out.println(
+				course.stream().filter(matchRulegreaterthan10).mapToInt(courses -> courses.getNoOfStudent()).max());
+		//OptionalInt[400]
 	}
 
 }
