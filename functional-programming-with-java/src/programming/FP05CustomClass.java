@@ -79,23 +79,35 @@ public class FP05CustomClass {
 		// Reverse sort
 		Comparator<Course> comparingNoOfStudentRev = Comparator.comparing(Course::getNoOfStudent).reversed();
 		System.out.println(course.stream().sorted(comparingNoOfStudentInc).collect(Collectors.toList()));
-		//[Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144, reviewScore=14], Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54]]
+		// [Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring,
+		// noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144,
+		// reviewScore=14], Course [name=Java, noOfStudent=400, reviewScore=34], Course
+		// [name=Python, noOfStudent=400, reviewScore=54]]
 
 		System.out.println(course.stream().sorted(comparingNoOfStudentRev).collect(Collectors.toList()));
-		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=Hibernate, noOfStudent=144, reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=React, noOfStudent=101, reviewScore=314]]
+		// [Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python,
+		// noOfStudent=400, reviewScore=54], Course [name=Hibernate, noOfStudent=144,
+		// reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94],
+		// Course [name=React, noOfStudent=101, reviewScore=314]]
 
 		// If no of student same for more than one object then sort based on reviews
 		Comparator<Course> comparingNoOfStudentIncReviews = Comparator.comparing(Course::getNoOfStudent)
 				.thenComparing(Course::getReviewScore).reversed();
 
 		System.out.println(course.stream().sorted(comparingNoOfStudentIncReviews).collect(Collectors.toList()));
-		//[Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Hibernate, noOfStudent=144, reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=React, noOfStudent=101, reviewScore=314]]
+		// [Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=Java,
+		// noOfStudent=400, reviewScore=34], Course [name=Hibernate, noOfStudent=144,
+		// reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94],
+		// Course [name=React, noOfStudent=101, reviewScore=314]]
 
 		// reviews in reverse order
 		Comparator<Course> comparingNoOfStudentIncReviewsRev = Comparator.comparing(Course::getNoOfStudent)
 				.thenComparing(Course::getReviewScore).reversed();
 		System.out.println(course.stream().sorted(comparingNoOfStudentIncReviewsRev).collect(Collectors.toList()));
-		//[Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Hibernate, noOfStudent=144, reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=React, noOfStudent=101, reviewScore=314]]
+		// [Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=Java,
+		// noOfStudent=400, reviewScore=34], Course [name=Hibernate, noOfStudent=144,
+		// reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94],
+		// Course [name=React, noOfStudent=101, reviewScore=314]]
 
 	}
 
