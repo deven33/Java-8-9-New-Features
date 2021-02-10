@@ -100,7 +100,7 @@ public class FP05CustomClass {
 		// reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94],
 		// Course [name=React, noOfStudent=101, reviewScore=314]]
 
-		// reviews in reverse order
+		// Reviews in reverse order
 		Comparator<Course> comparingNoOfStudentIncReviewsRev = Comparator.comparing(Course::getNoOfStudent)
 				.thenComparing(Course::getReviewScore).reversed();
 		System.out.println(course.stream().sorted(comparingNoOfStudentIncReviewsRev).collect(Collectors.toList()));
@@ -108,6 +108,34 @@ public class FP05CustomClass {
 		// noOfStudent=400, reviewScore=34], Course [name=Hibernate, noOfStudent=144,
 		// reviewScore=14], Course [name=Spring, noOfStudent=109, reviewScore=94],
 		// Course [name=React, noOfStudent=101, reviewScore=314]]
+
+		// Pickup top 3 records- using limit
+		System.out.println(course.stream().limit(3).collect(Collectors.toList()));
+		// [Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python,
+		// noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101,
+		// reviewScore=314]]
+
+		// Skip top 3 results
+		System.out.println(course.stream().skip(3).collect(Collectors.toList()));
+		// [Course [name=Spring, noOfStudent=109, reviewScore=94], Course
+		// [name=Hibernate, noOfStudent=144, reviewScore=14]]
+
+		// Skip-1 then Limit-2
+		System.out.println(course.stream().skip(1).limit(2).collect(Collectors.toList()));
+		//[Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314]]
+
+		
+		//Take while match doesnt found- take while review doent come < 100
+		System.out.println(course);
+		System.out.println(course.stream().takeWhile(courses -> courses.getReviewScore() < 100).collect(Collectors.toList()));
+		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
+		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54]]
+
+		//Skip element while match doesnt found- skip while review doent come > 30
+		System.out.println(course);
+		System.out.println(course.stream().dropWhile(courses -> courses.getReviewScore() > 30).collect(Collectors.toList()));
+		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
+		//[Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
 
 	}
 
