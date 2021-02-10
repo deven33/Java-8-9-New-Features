@@ -122,21 +122,47 @@ public class FP05CustomClass {
 
 		// Skip-1 then Limit-2
 		System.out.println(course.stream().skip(1).limit(2).collect(Collectors.toList()));
-		//[Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314]]
+		// [Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React,
+		// noOfStudent=101, reviewScore=314]]
 
-		
-		//Take while match doesnt found- take while review doent come < 100
+		// Take while match doesnt found- take while review doent come < 100
 		System.out.println(course);
-		System.out.println(course.stream().takeWhile(courses -> courses.getReviewScore() < 100).collect(Collectors.toList()));
-		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
-		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54]]
+		System.out.println(
+				course.stream().takeWhile(courses -> courses.getReviewScore() < 100).collect(Collectors.toList()));
+		// [Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python,
+		// noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101,
+		// reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94],
+		// Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
+		// [Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python,
+		// noOfStudent=400, reviewScore=54]]
 
-		//Skip element while match doesnt found- skip while review doent come > 30
+		// Skip element while match doesnt found- skip while review doent come > 30
 		System.out.println(course);
-		System.out.println(course.stream().dropWhile(courses -> courses.getReviewScore() > 30).collect(Collectors.toList()));
-		//[Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python, noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101, reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94], Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
-		//[Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
+		System.out.println(
+				course.stream().dropWhile(courses -> courses.getReviewScore() > 30).collect(Collectors.toList()));
+		// [Course [name=Java, noOfStudent=400, reviewScore=34], Course [name=Python,
+		// noOfStudent=400, reviewScore=54], Course [name=React, noOfStudent=101,
+		// reviewScore=314], Course [name=Spring, noOfStudent=109, reviewScore=94],
+		// Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
+		// [Course [name=Hibernate, noOfStudent=144, reviewScore=14]]
 
+		// Max - return last element of list
+		System.out.println(course.stream().max(comparingNoOfStudentIncReviews));
+		// Optional[Course [name=React, noOfStudent=101, reviewScore=314]] // Optional
+
+		// Min - return first element of list
+		System.out.println(course.stream().min(comparingNoOfStudentIncReviews));
+		// Optional[Course [name=Python, noOfStudent=400, reviewScore=54]]
+
+		// Optional Provides a way that we can see resultant value exists or not
+		// if result not exist then we can provide default value using orElse
+		System.out.println(
+				course.stream().max(comparingNoOfStudentIncReviews).orElse(new Course("Docker", 244, 14, "Basic")));
+		// Course [name=React, noOfStudent=101, reviewScore=314] // Option not there
+
+		// Find First
+		System.out.println(course.stream().sorted(comparingNoOfStudentIncReviews).findFirst()
+				.orElse(new Course("Docker", 244, 14, "Basic")));
 	}
 
 }
