@@ -1,9 +1,12 @@
 package programming;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 class Course {
 	private String name;
@@ -62,8 +65,8 @@ public class FP05CustomClass {
 
 	public static void main(String[] args) {
 		List<Course> course = List.of(new Course("Java", 400, 34, "Basic"), new Course("Python", 400, 54, "Basic"),
-				new Course("React", 101, 314, "Basic"), new Course("Spring", 109, 94, "Basic"),
-				new Course("Hibernate", 144, 14, "Basic"));
+				new Course("React", 101, 314, "Intermediate"), new Course("Spring", 109, 94, "Basic"),
+				new Course("Hibernate", 144, 14, "Adv"));
 
 		// All match, none match, any match
 
@@ -186,7 +189,37 @@ public class FP05CustomClass {
 		// MAx
 		System.out.println(
 				course.stream().filter(matchRulegreaterthan10).mapToInt(courses -> courses.getNoOfStudent()).max());
-		//OptionalInt[400]
+		// OptionalInt[400]
+
+		// GroupBy
+		System.out.println(course.stream().collect(Collectors.groupingBy(courses -> courses.getCourse())));
+		// {Basic=[Course [name=Java, noOfStudent=400, reviewScore=34], Course
+		// [name=Python, noOfStudent=400, reviewScore=54], Course [name=Spring,
+		// noOfStudent=109, reviewScore=94]], Adv=[Course [name=Hibernate,
+		// noOfStudent=144, reviewScore=14]], Intermediate=[Course [name=React,
+		// noOfStudent=101, reviewScore=314]]}
+
+		// Count By Group
+		System.out.println(course.stream()
+				.collect(Collectors.groupingBy(coursess -> coursess.getCourse(), Collectors.counting())));
+		// {Basic=3, Adv=1, Intermediate=1}
+
+		// array to Stream
+		int arry[] = { 3, 6, 2, 9 };
+		System.out.println(Arrays.stream(arry));
+
+		System.out.println(Arrays.stream(arry).sum());
+
+		// generate Numbers and perform operation
+		System.out.println(IntStream.range(1, 10).sum());// 10 is exclusive
+		System.out.println(IntStream.rangeClosed(1, 10));// 10 inclusive
+		System.out.println(IntStream.iterate(1, e -> e + 2).limit(10).sum());
+		System.out.println(IntStream.iterate(1, e -> e + 2).limit(10).peek(System.out::print).sum());
+
+		// generate numbers and asve in List --box() is must
+		System.out.println(IntStream.rangeClosed(3, 28).boxed().collect(Collectors.toList()));
+		// [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+		// 24, 25, 26, 27, 28]
 	}
 
 }
